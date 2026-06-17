@@ -40,12 +40,23 @@ static void	init_stacks(t_stack *stacks)
 
 static int	parse_flags(t_stack *stacks, char **av, int i)
 {
+	int	strategy_set;
+
+	strategy_set = 0;
 	while (av[i] && av[i][0] == '-' && av[i][1] == '-')
 	{
 		if (!ft_strcmp(av[i], "--bench"))
+		{
+			if (stacks->bench)
+				return (-1);
 			stacks->bench = 1;
+		}
 		else if (!set_sort(stacks, av, i))
 			return (-1);
+		else if (strategy_set)
+			return (-1);
+		else
+			strategy_set = 1;
 		i++;
 	}
 	return (i);
