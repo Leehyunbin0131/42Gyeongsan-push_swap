@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/30 18:16:00 by hyunlee           #+#    #+#             */
+/*   Updated: 2026/05/30 18:16:00 by hyunlee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <stdlib.h>
+# include <unistd.h>
+
+# define ADAPTIVE 0
+# define SIMPLE 1
+# define MEDIUM 2
+# define COMPLEX 3
+# define OP_NONE 0
+# define OP_SA 1
+# define OP_SB 2
+# define OP_SS 3
+# define OP_PA 4
+# define OP_PB 5
+# define OP_RA 6
+# define OP_RB 7
+# define OP_RR 8
+# define OP_RRA 9
+# define OP_RRB 10
+# define OP_RRR 11
+
+typedef struct s_stack
+{
+	int	*a;
+	int	*b;
+	int	top_a;
+	int	top_b;
+	int	bench;
+	int	s_tyep;
+}	t_stack;
+
+int		sa(int *stack, int top);
+int		sb(int *stack, int top);
+int		ss(int *a, int top_a, int *b, int top_b);
+int		pa(int *a, int *top_a, int *b, int *top_b);
+int		pb(int *a, int *top_a, int *b, int *top_b);
+int		ra(int *stack, int top);
+int		rb(int *stack, int top);
+int		rr(int *a, int top_a, int *b, int top_b);
+int		rra(int *stack, int top);
+int		rrb(int *stack, int top);
+int		rrr(int *a, int top_a, int *b, int top_b);
+int		fill_a(char **args, int count, int *stack);
+void	fill_b(int size, int *stack);
+int		init_stk(t_stack *stacks, char **args, int count);
+int		check_nums(char **args, int count);
+int		has_dup(int *stack, int top);
+int		alloc_stk(t_stack *stacks, int size);
+void	free_stacks(t_stack *stacks);
+int		is_sorted(int *a, int top);
+int		find_min_range(int *stack, int top, int start, int range);
+int		find_value_index(int *stack, int top, int value);
+void	print_instruction(int instruction);
+void	sort_selection(t_stack *stacks);
+int		ft_strcmp(char *s1, char *s2);
+size_t	ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
+int		arr_len(char **arr);
+void	free_split(char **arr);
+
+#endif
