@@ -6,55 +6,11 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 09:05:56 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/17 19:35:01 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/17 21:01:06 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	set_sort(t_stack *stacks, char **av, int i)
-{
-	if (!ft_strcmp(av[i], "--simple"))
-		stacks->s_tyep = SIMPLE;
-	else if (!ft_strcmp(av[i], "--medium"))
-		stacks->s_tyep = MEDIUM;
-	else if (!ft_strcmp(av[i], "--complex"))
-		stacks->s_tyep = COMPLEX;
-	else if (!ft_strcmp(av[i], "--adaptive"))
-		stacks->s_tyep = ADAPTIVE;
-	else
-		return (0);
-	return (1);
-}
-
-static int	arg_start(t_stack *stacks, int ac, char **av)
-{
-	int	i;
-
-	if (ac < 2)
-		return (0);
-	stacks->bench = 0;
-	stacks->s_tyep = ADAPTIVE;
-	i = 1;
-	if (av[i][0] == '-' && av[i][1] == '-')
-	{
-		if (!ft_strcmp(av[i], "--bench"))
-		{
-			stacks->bench = 1;
-			i++;
-		}
-		if (av[i][0] == '-' && av[i][1] == '-')
-		{
-			if (!set_sort(stacks, av, i))
-			{
-				write(2, "Error\n", 6);
-				return (0);
-			}
-			i++;
-		}
-	}
-	return (i);
-}
 
 static int	prep_args(int ac, char **av, int start, t_nums *nums)
 {
@@ -82,10 +38,27 @@ static int	run_push_swap(t_stack *stacks, t_nums *nums)
 {
 	if (!init_stk(stacks, nums->args, nums->count))
 		return (0);
+	stacks->disorder = calc_disorder(stacks->a, stacks->top_a);
 	if (nums->split)
 		free_split(nums->args);
 	if (!is_sorted(stacks->a, stacks->top_a))
-		sort_selection(stacks);
+	{
+		if (stacks->s_type == SIMPLE)
+			sort_simple(stacks);
+		if (stacks->s_type == MEDIUM)
+			sort_simple(stacks);
+		if (stacks->s_type == COMPLEX)
+			sort_simple(stacks);
+		if (stacks->s_type == ADAPTIVE)
+		{
+			if (stacks->disorder < 0.2)
+				sort_simple(stacks);
+			if (stacks->disorder < 0.5)
+				sort_simple(stacks);
+			if (stacks->disorder >= 0.5)
+				sort_simple(stacks);
+		}
+	}
 	return (1);
 }
 
@@ -110,6 +83,8 @@ int	main(int ac, char **av)
 		write(2, "Error\n", 6);
 		return (0);
 	}
+	if (stacks.bench)
+		print_bench(&stacks);
 	free_stacks(&stacks);
 	return (0);
 }

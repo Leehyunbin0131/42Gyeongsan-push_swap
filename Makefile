@@ -4,15 +4,20 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = push_swap.c \
+	arg_parse.c \
 	instructions.c \
 	operations_reverse_rotate.c \
 	operations_rotate.c \
 	operations_swap_push.c \
 	parse_utils.c \
-	sort_selection.c \
+	sort_simple.c \
 	stack_init.c \
 	stack_utils.c \
-	libft_utlis.c \
+	ft_printf.c \
+	ft_printf_utils.c \
+	formatting.c \
+	bench.c \
+	libft_utils.c \
 	ft_split.c
 
 OBJS = $(SRCS:.c=.o)

@@ -27,8 +27,12 @@ static void	print_instruction_two(int instruction)
 		write(1, "rrr\n", 4);
 }
 
-void	print_instruction(int instruction)
+void	print_instruction(t_stack *stacks, int instruction)
 {
+	if (instruction == OP_NONE)
+		return ;
+	if (stacks->bench)
+		stacks->ops[instruction]++;
 	if (instruction == OP_SA)
 		write(1, "sa\n", 3);
 	else if (instruction == OP_SB)

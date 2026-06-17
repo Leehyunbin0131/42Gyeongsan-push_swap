@@ -35,7 +35,7 @@ static int	in_range(char *str)
 	return (1);
 }
 
-static int	valid_nbr(char *str)
+static int	check_nbr(char *str)
 {
 	if (!str || !str[0])
 		return (0);
@@ -52,19 +52,29 @@ static int	valid_nbr(char *str)
 	return (1);
 }
 
-int	check_nums(char **args, int count)
+int	parse_nbr(char *str, int *nbr)
 {
 	int	i;
+	int	sign;
+	int	val;
 
+	if (!check_nbr(str) || !in_range(str))
+		return (0);
 	i = 0;
-	while (i < count)
+	sign = 1;
+	val = 0;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (!valid_nbr(args[i]))
-			return (0);
-		if (!in_range(args[i]))
-			return (0);
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
+	while (str[i])
+	{
+		val = val * 10 + str[i] - '0';
+		i++;
+	}
+	*nbr = val * sign;
 	return (1);
 }
 

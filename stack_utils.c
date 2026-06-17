@@ -67,3 +67,29 @@ int	find_value_index(int *stack, int top, int value)
 	}
 	return (-1);
 }
+
+double	calc_disorder(int *stack, int top)
+{
+	int		i;
+	int		j;
+	int		inv;
+	int		total;
+
+	if (top <= 1)
+		return (0.0);
+	inv = 0;
+	i = 0;
+	while (i < top)
+	{
+		j = i + 1;
+		while (j < top)
+		{
+			if (stack[top - 1 - i] > stack[top - 1 - j])
+				inv++;
+			j++;
+		}
+		i++;
+	}
+	total = top * (top - 1) / 2;
+	return ((double)inv / (double)total);
+}

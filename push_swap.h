@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "ft_printf.h"
 
 # define ADAPTIVE 0
 # define SIMPLE 1
@@ -35,12 +36,14 @@
 
 typedef struct s_stack
 {
-	int	*a;
-	int	*b;
-	int	top_a;
-	int	top_b;
-	int	bench;
-	int	s_tyep;
+	int		*a;
+	int		*b;
+	int		top_a;
+	int		top_b;
+	int		bench;
+	int		s_type;
+	double	disorder;
+	int		ops[12];
 }	t_stack;
 
 typedef struct s_nums
@@ -64,15 +67,18 @@ int		rrr(int *a, int top_a, int *b, int top_b);
 int		fill_a(char **args, int count, int *stack);
 void	fill_b(int size, int *stack);
 int		init_stk(t_stack *stacks, char **args, int count);
-int		check_nums(char **args, int count);
+int		arg_start(t_stack *stacks, int ac, char **av);
+int		parse_nbr(char *str, int *nbr);
 int		has_dup(int *stack, int top);
 int		alloc_stk(t_stack *stacks, int size);
 void	free_stacks(t_stack *stacks);
 int		is_sorted(int *a, int top);
 int		find_min_range(int *stack, int top, int start, int range);
 int		find_value_index(int *stack, int top, int value);
-void	print_instruction(int instruction);
-void	sort_selection(t_stack *stacks);
+void	print_instruction(t_stack *stacks, int instruction);
+void	print_bench(t_stack *stacks);
+double	calc_disorder(int *stack, int top);
+void	sort_simple(t_stack *stacks);
 int		ft_strcmp(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
