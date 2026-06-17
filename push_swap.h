@@ -43,6 +43,13 @@ typedef struct s_stack
 	int	s_tyep;
 }	t_stack;
 
+typedef struct s_nums
+{
+	char	**args;
+	int		count;
+	int		split;
+}	t_nums;
+
 int		sa(int *stack, int top);
 int		sb(int *stack, int top);
 int		ss(int *a, int top_a, int *b, int top_b);

@@ -6,18 +6,11 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 09:05:56 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/17 16:04:11 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/17 19:35:01 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-typedef struct s_nums
-{
-	char	**args;
-	int		count;
-	int		split;
-}	t_nums;
 
 static int	set_sort(t_stack *stacks, char **av, int i)
 {
