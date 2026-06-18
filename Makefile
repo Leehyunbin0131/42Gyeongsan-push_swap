@@ -11,6 +11,7 @@ SRCS = push_swap.c \
 	operations_swap_push.c \
 	parse_nbr.c \
 	sort_simple.c \
+	stack_alloc.c \
 	stack_init.c \
 	stack_utils.c \
 	ft_printf.c \
