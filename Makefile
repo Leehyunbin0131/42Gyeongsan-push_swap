@@ -9,7 +9,7 @@ SRCS = push_swap.c \
 	operations_reverse_rotate.c \
 	operations_rotate.c \
 	operations_swap_push.c \
-	parse_utils.c \
+	parse_nbr.c \
 	sort_simple.c \
 	stack_init.c \
 	stack_utils.c \
@@ -18,7 +18,8 @@ SRCS = push_swap.c \
 	formatting.c \
 	bench.c \
 	libft_utils.c \
-	ft_split.c
+	ft_split.c \
+	sort_medium.c
 
 OBJS = $(SRCS:.c=.o)
 

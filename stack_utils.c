@@ -32,40 +32,14 @@ int	is_sorted(int *a, int top)
 	return (1);
 }
 
-int	find_min_range(int *stack, int top, int start, int range)
-{
-	int	i;
-	int	end;
-	int	min;
-
-	if (top <= 0 || start < 0 || start >= top)
-		return (0);
-	end = start + range;
-	if (end >= top)
-		end = top - 1;
-	min = stack[start];
-	i = start + 1;
-	while (i <= end)
-	{
-		if (stack[i] < min)
-			min = stack[i];
-		i++;
-	}
-	return (min);
-}
-
 int	find_value_index(int *stack, int top, int value)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	while (i < top)
-	{
-		if (stack[i] == value)
-			return (i);
-		i++;
-	}
-	return (-1);
+	index = 0;
+	while (index < top && stack[index] != value)
+		index++;
+	return (index);
 }
 
 double	calc_disorder(int *stack, int top)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                     :+:      :+:    :+:   */
+/*   parse_nbr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -75,39 +75,5 @@ int	parse_nbr(char *str, int *nbr)
 		i++;
 	}
 	*nbr = val * sign;
-	return (1);
-}
-
-int	has_dup(int *stack, int top)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < top - 1)
-	{
-		j = i + 1;
-		while (j < top)
-		{
-			if (stack[i] == stack[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	alloc_stk(t_stack *stacks, int size)
-{
-	stacks->a = (int *)malloc(sizeof(int) * size);
-	if (!stacks->a)
-		return (0);
-	stacks->b = (int *)malloc(sizeof(int) * size);
-	if (!stacks->b)
-	{
-		free(stacks->a);
-		return (0);
-	}
 	return (1);
 }

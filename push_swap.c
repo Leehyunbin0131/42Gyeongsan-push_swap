@@ -6,33 +6,11 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 09:05:56 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/17 21:01:06 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/18 18:23:41 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	prep_args(int ac, char **av, int start, t_nums *nums)
-{
-	if (ac - start == 1)
-	{
-		nums->args = ft_split(av[start], ' ');
-		nums->split = 1;
-		if (!nums->args)
-			return (0);
-		nums->count = arr_len(nums->args);
-		if (nums->count == 0)
-		{
-			free_split(nums->args);
-			return (0);
-		}
-		return (1);
-	}
-	nums->split = 0;
-	nums->count = ac - start;
-	nums->args = &av[start];
-	return (1);
-}
 
 static int	run_push_swap(t_stack *stacks, t_nums *nums)
 {
@@ -46,7 +24,7 @@ static int	run_push_swap(t_stack *stacks, t_nums *nums)
 		if (stacks->s_type == SIMPLE)
 			sort_simple(stacks);
 		if (stacks->s_type == MEDIUM)
-			sort_simple(stacks);
+			sort_medium(stacks);
 		if (stacks->s_type == COMPLEX)
 			sort_simple(stacks);
 		if (stacks->s_type == ADAPTIVE)
@@ -54,7 +32,7 @@ static int	run_push_swap(t_stack *stacks, t_nums *nums)
 			if (stacks->disorder < 0.2)
 				sort_simple(stacks);
 			if (stacks->disorder < 0.5)
-				sort_simple(stacks);
+				sort_medium(stacks);
 			if (stacks->disorder >= 0.5)
 				sort_simple(stacks);
 		}

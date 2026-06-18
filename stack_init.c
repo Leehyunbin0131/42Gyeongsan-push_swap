@@ -12,7 +12,80 @@
 
 #include "push_swap.h"
 
-int	fill_a(char **args, int count, int *stack)
+static int	*cpy_stack(int *stack, int top)
+{
+	int	i;
+	int	*cpy;
+
+	cpy = malloc(sizeof(int) * top);
+	if (!cpy)
+		return (0);
+	i = 0;
+	while (i < top)
+	{
+		cpy[i] = stack[i];
+		i++;
+	}
+	return (cpy);
+}
+
+int	alloc_stk(t_stack *stacks, int size)
+{
+	stacks->a = (int *)malloc(sizeof(int) * size);
+	if (!stacks->a)
+		return (0);
+	stacks->b = (int *)malloc(sizeof(int) * size);
+	if (!stacks->b)
+	{
+		free(stacks->a);
+		return (0);
+	}
+	return (1);
+}
+
+int	has_dup(int *stack, int top)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < top - 1)
+	{
+		j = i + 1;
+		while (j < top)
+		{
+			if (stack[i] == stack[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+static int	normalize(int *stack, int top)
+{
+	int	*cpy;
+	int	i;
+	int	j;
+
+	cpy = cpy_stack(stack, top);
+	if (!cpy)
+		return (0);
+	i = 0;
+	while (i < top)
+	{
+		j = 0;
+		stack[i] = 0;
+		while (j < top)
+			stack[i] += (cpy[j++] < cpy[i]);
+		i++;
+	}
+	free(cpy);
+	return (1);
+}
+
+static int	fill_a(char **args, int count, int *stack)
 {
 	int	i;
 	int	current_index;
@@ -31,7 +104,7 @@ int	fill_a(char **args, int count, int *stack)
 	return (count);
 }
 
-void	fill_b(int size, int *stack)
+static void	fill_b(int size, int *stack)
 {
 	int	i;
 
@@ -52,17 +125,20 @@ int	init_stk(t_stack *stacks, char **args, int count)
 	stacks->top_a = fill_a(args, count, stacks->a);
 	if (!stacks->top_a)
 	{
-		free(stacks->a);
-		free(stacks->b);
+		free_stacks(stacks);
 		return (0);
 	}
 	if (has_dup(stacks->a, stacks->top_a))
 	{
-		free(stacks->a);
-		free(stacks->b);
+		free_stacks(stacks);
 		return (0);
 	}
 	fill_b(count, stacks->b);
 	stacks->top_b = 0;
+	if (!normalize(stacks->a, stacks->top_a))
+	{
+		free_stacks(stacks);
+		return (0);
+	}
 	return (1);
 }

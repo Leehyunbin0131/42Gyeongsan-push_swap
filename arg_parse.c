@@ -77,3 +77,25 @@ int	arg_start(t_stack *stacks, int ac, char **av)
 	}
 	return (ret);
 }
+
+int	prep_args(int ac, char **av, int start, t_nums *nums)
+{
+	if (ac - start == 1)
+	{
+		nums->args = ft_split(av[start], ' ');
+		nums->split = 1;
+		if (!nums->args)
+			return (0);
+		nums->count = arr_len(nums->args);
+		if (nums->count == 0)
+		{
+			free_split(nums->args);
+			return (0);
+		}
+		return (1);
+	}
+	nums->split = 0;
+	nums->count = ac - start;
+	nums->args = &av[start];
+	return (1);
+}
