@@ -20,7 +20,8 @@ SRCS = push_swap.c \
 	bench.c \
 	libft_utils.c \
 	ft_split.c \
-	sort_medium.c
+	sort_medium.c \
+	sort_complex.c
 
 OBJS = $(SRCS:.c=.o)
 
