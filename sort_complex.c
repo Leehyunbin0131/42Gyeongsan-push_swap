@@ -6,13 +6,12 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 11:16:44 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/20 13:01:45 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/20 16:07:08 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_complex(t_stack *stacks)
+void    sort_complex(t_stack *stacks)
 {
-	
 }
