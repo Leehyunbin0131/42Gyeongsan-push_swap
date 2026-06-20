@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 09:05:56 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/20 11:40:21 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/20 12:40:32 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	run_push_swap(t_stack *stacks, t_nums *nums)
 		else if (stacks->s_type == MEDIUM)
 			sort_medium(stacks);
 		else if (stacks->s_type == COMPLEX)
-			sort_medium(stacks);
+			sort_complex(stacks);
 		else if (stacks->s_type == ADAPTIVE)
 		{
 			if (stacks->disorder < 0.2)
@@ -34,7 +34,7 @@ static int	run_push_swap(t_stack *stacks, t_nums *nums)
 			else if (stacks->disorder < 0.5)
 				sort_medium(stacks);
 			else if (stacks->disorder >= 0.5)
-				sort_medium(stacks);
+				sort_complex(stacks);
 		}
 	}
 	return (1);

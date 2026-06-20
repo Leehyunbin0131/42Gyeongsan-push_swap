@@ -79,6 +79,7 @@ void	print_bench(t_stack *stacks);
 double	calc_disorder(int *stack, int top);
 void	sort_simple(t_stack *stacks);
 void	sort_medium(t_stack *stacks);
+void	sort_complex(t_stack *stacks);
 int		ft_strcmp(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
