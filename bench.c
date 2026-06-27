@@ -31,13 +31,13 @@ static void	print_strategy_line(t_stack *stacks)
 	else if (stacks->s_type == MEDIUM)
 		ft_fprintf(2, "Medium / O(n√n)\n");
 	else if (stacks->s_type == COMPLEX)
-		ft_fprintf(2, "Complex / O(n log n)\n");
+		ft_fprintf(2, "Complex / O(n√n)\n");
 	else if (stacks->disorder < 0.2)
 		ft_fprintf(2, "Adaptive / O(n²)\n");
 	else if (stacks->disorder < 0.5)
 		ft_fprintf(2, "Adaptive / O(n√n)\n");
 	else
-		ft_fprintf(2, "Adaptive / O(n log n)\n");
+		ft_fprintf(2, "Adaptive / O(n√n)\n");
 }
 
 void	print_bench(t_stack *stacks)
