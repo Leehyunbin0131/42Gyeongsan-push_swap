@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 11:14:13 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/27 15:23:37 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/27 17:06:13 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	push_chunks_to_b(t_stack *stacks, int count)
 		{
 			print_instruction(stacks, pb(stacks->a, &stacks->top_a,
 					stacks->b, &stacks->top_b));
+			print_instruction(stacks, rb(stacks->b, stacks->top_b));
 			next_nbr++;
 		}
 		else if (next_nbr < stacks->a[stacks->top_a - 1]
@@ -32,7 +33,6 @@ static int	push_chunks_to_b(t_stack *stacks, int count)
 		{
 			print_instruction(stacks, pb(stacks->a, &stacks->top_a,
 					stacks->b, &stacks->top_b));
-			print_instruction(stacks, rb(stacks->b, stacks->top_b));
 			next_nbr++;
 		}
 		else
