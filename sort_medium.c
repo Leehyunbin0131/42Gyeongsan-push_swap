@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 11:14:13 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/27 15:15:50 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/27 15:38:06 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	push_chunks_to_b(t_stack *stacks, int count)
 	int	chunk_size;
 
 	chunk_size = (int)(0.05 * stacks->top_a) + 15;
-	
 	next_nbr = 0;
 	while (next_nbr < count)
 	{
