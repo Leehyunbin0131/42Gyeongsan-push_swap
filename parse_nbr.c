@@ -6,7 +6,7 @@
 /*   By: hyunlee <hyunlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 19:31:02 by hyunlee           #+#    #+#             */
-/*   Updated: 2026/06/26 18:24:13 by hyunlee          ###   ########.fr       */
+/*   Updated: 2026/06/27 18:00:00 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static int	in_range(char *str)
 			sign = -1;
 		str++;
 	}
+	while (*str == '0')
+		str++;
+	if (*str == '\0')
+		return (1);
 	if (sign == 1)
 		limit = "2147483647";
 	else
@@ -69,6 +73,8 @@ int	parse_nbr(char *str, int *nbr)
 			sign = -1;
 		i++;
 	}
+	while (str[i] == '0')
+		i++;
 	while (str[i])
 	{
 		val = val * 10 + str[i] - '0';

@@ -72,7 +72,6 @@ int		has_dup(int *stack, int top);
 int		alloc_stk(t_stack *stacks, int size);
 void	free_stacks(t_stack *stacks);
 int		is_sorted(int *a, int top);
-int		find_min_range(int *stack, int top, int start, int range);
 int		find_value_index(int *stack, int top, int value);
 void	print_instruction(t_stack *stacks, int instruction);
 void	print_bench(t_stack *stacks);
